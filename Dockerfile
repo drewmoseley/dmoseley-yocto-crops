@@ -9,10 +9,6 @@ RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl apt-utils netcat lzma-dev liblzma-dev liblzma5 xz-utils python3 python3-distutils dos2unix
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential software-properties-common
-# RUN DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:ubuntu-toolchain-r/test -y
-# RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gcc-9 g++-9 gcc-9-multilib lib32objc-9-dev lib32stdc++-9-dev lib32gcc-9-dev libobjc-9-dev libstdc++-9-dev libgcc-9-dev
-# RUN DEBIAN_FRONTEND=noninteractive update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-9
-# RUN DEBIAN_FRONTEND=noninteractive update-alternatives --config gcc
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -f
 
 RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
