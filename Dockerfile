@@ -7,7 +7,7 @@ RUN echo "dash dash/sh boolean false" | debconf-set-selections
 RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl apt-utils netcat lzma-dev liblzma-dev liblzma5 xz-utils python3 dos2unix
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl apt-utils netcat lzma-dev liblzma-dev liblzma5 xz-utils python3 python3-distutils dos2unix
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential software-properties-common
 # RUN DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:ubuntu-toolchain-r/test -y
 # RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gcc-9 g++-9 gcc-9-multilib lib32objc-9-dev lib32stdc++-9-dev lib32gcc-9-dev libobjc-9-dev libstdc++-9-dev libgcc-9-dev
