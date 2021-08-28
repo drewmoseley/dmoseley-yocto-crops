@@ -8,11 +8,12 @@ RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl apt-utils netcat lzma-dev liblzma-dev liblzma5 xz-utils python3 python3-distutils dos2unix
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gawk diffstat unzip p7zip-full texinfo gcc-multilib chrpath libsdl1.2-dev xterm gperf bison g++-multilib
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential software-properties-common
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -f
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -f -y
 
 RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
-RUN DEBIAN_FRONTEND=noninteractive apt-get install git-lfs
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git-core git-lfs
 RUN git lfs install
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y
