@@ -1,4 +1,4 @@
-FROM crops/yocto:ubuntu-16.04-base
+FROM crops/yocto:ubuntu-18.04-base
 
 USER root
 
@@ -7,7 +7,7 @@ RUN echo "dash dash/sh boolean false" | debconf-set-selections
 RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl apt-utils netcat lzma-dev liblzma-dev liblzma5 xz-utils python python-distutils-extra dos2unix
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl apt-utils netcat lzma-dev liblzma-dev liblzma5 xz-utils python3 python3-distutils dos2unix
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gawk diffstat unzip p7zip-full texinfo gcc-multilib chrpath libsdl1.2-dev xterm gperf bison g++-multilib
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential software-properties-common
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -f -y
