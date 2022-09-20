@@ -34,7 +34,8 @@ RUN userdel yoctouser
 # RUN groupdel yoctouser
 
 RUN groupadd -r -g 1000 dmoseley
-RUN useradd -r -u 1000 -g dmoseley -G sudo dmoseley
+RUN groupadd -r -g 126 kvm
+RUN useradd -r -u 1000 -g dmoseley -G sudo,kvm dmoseley
 
 # RUN echo 'yoctouser:mysecretpassword' | chpasswd
 RUN echo 'root:mysecretpassword' | chpasswd
