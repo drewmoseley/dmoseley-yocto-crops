@@ -12,7 +12,7 @@ RUN wget -L "https://download.opensuse.org/repositories/devel:/kubic:/libcontain
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl apt-utils netcat lzma-dev liblzma-dev liblzma5 xz-utils python3 python3-pip python3-distutils dos2unix
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gawk diffstat unzip p7zip-full texinfo gcc-multilib chrpath libsdl1.2-dev xterm gperf bison g++-multilib docker.io podman
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential software-properties-common jq
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential software-properties-common jq emacs
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -f -y
 
 RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
