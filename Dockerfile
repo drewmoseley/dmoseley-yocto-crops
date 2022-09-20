@@ -19,6 +19,9 @@ RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.d
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git-core git-lfs
 RUN git lfs install
 
+RUN wget https://github.com/dandavison/delta/releases/download/0.14.0/git-delta_0.14.0_amd64.deb -O /tmp/git-delta.deb
+RUN DEBIAN_FRONTEND=noninteractive dpkg --install /tmp/git-delta.deb
+
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
