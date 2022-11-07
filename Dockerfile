@@ -1,6 +1,7 @@
 FROM ubuntu:20.04
 
 USER root
+ARG TARGETPLATFORM
 
 # make /bin/sh symlink to bash instead of dash:
 RUN echo "dash dash/sh boolean false" | debconf-set-selections
@@ -14,9 +15,7 @@ COPY podman.list /etc/apt/sources.list.d/podman.list
 RUN wget -L "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04/Release.key" -O - | sudo apt-key add -
 
 # Other packages that I use
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl netcat lzma-dev liblzma-dev liblzma5 python3-distutils dos2unix
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y p7zip-full gcc-multilib gperf bison g++-multilib docker.io
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common jq emacs
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl netcat lzma-dev liblzma-dev liblzma5 python3-distutils dos2unix p7zip-full docker.io jq emacs tmux
 # RUN DEBIAN_FRONTEND=noninteractive apt-get install -y podman
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -f -y
 
@@ -26,7 +25,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git-core git-lfs
 RUN git lfs install
 
 # Install git-delta
-RUN wget https://github.com/dandavison/delta/releases/download/0.14.0/git-delta_0.14.0_amd64.deb -O /tmp/git-delta.deb
+RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then ARCHITECTURE=amd64; elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then ARCHITECTURE=arm64; else ARCHITECTURE=amd64; fi && \
+    wget https://github.com/dandavison/delta/releases/download/0.14.0/git-delta_0.14.0_${ARCHITECTURE}.deb -O /tmp/git-delta.deb
 RUN DEBIAN_FRONTEND=noninteractive dpkg --install /tmp/git-delta.deb
 
 # Cleanup APT

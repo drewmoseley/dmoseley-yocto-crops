@@ -1,1 +1,4 @@
-docker build . -t drewmoseley/yocto-docker:latest 2>&1 | tee out
+#!/bin/sh
+#
+
+docker buildx build --push --platform linux/amd64,linux/arm64 -t drewmoseley/yocto-docker:latest .
