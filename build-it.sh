@@ -1,1 +1,1 @@
-docker build . -t drewmoseley/dmoseley-crops:latest 2>&1 | tee out
+docker build . -t drewmoseley/yocto-docker:latest 2>&1 | tee out
