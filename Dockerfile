@@ -21,9 +21,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -f -y
 # Generate proper locale
 RUN locale-gen en_US.UTF-8
 
-# Install podman
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y podman
-
 # Install git-lfs
 RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git-core git-lfs
@@ -38,6 +35,9 @@ RUN DEBIAN_FRONTEND=noninteractive dpkg --install /tmp/git-delta.deb
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get autoremove -y
+
+# Install podman
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y podman
 
 # Install Kas
 RUN pip3 install --upgrade pip
