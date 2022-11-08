@@ -9,15 +9,20 @@ RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y
 # Standard Yocto requirements from https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gawk wget git diffstat unzip texinfo gcc build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm python3-subunit mesa-common-dev zstd liblz4-tool sudo apt-utils
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gawk wget git diffstat unzip texinfo gcc build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm python3-subunit mesa-common-dev zstd liblz4-tool sudo apt-utils python2.7 locales
 
 COPY podman.list /etc/apt/sources.list.d/podman.list
 RUN wget -L "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04/Release.key" -O - | sudo apt-key add -
 
 # Other packages that I use
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl netcat lzma-dev liblzma-dev liblzma5 python3-distutils dos2unix p7zip-full docker.io jq emacs tmux
-# RUN DEBIAN_FRONTEND=noninteractive apt-get install -y podman
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -f -y
+
+# Generate proper locale
+RUN locale-gen en_US.UTF-8
+
+# Install podman
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y podman
 
 # Install git-lfs
 RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
