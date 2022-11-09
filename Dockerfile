@@ -15,7 +15,7 @@ COPY podman.list /etc/apt/sources.list.d/podman.list
 RUN wget -L "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04/Release.key" -O - | sudo apt-key add -
 
 # Other packages that I use
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl netcat lzma-dev liblzma-dev liblzma5 python3-distutils dos2unix p7zip-full docker.io jq emacs tmux
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl netcat lzma-dev liblzma-dev liblzma5 python3-distutils dos2unix p7zip-full docker.io jq emacs tmux keychain
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -f -y
 
 # Generate proper locale
