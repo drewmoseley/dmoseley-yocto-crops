@@ -28,6 +28,9 @@ RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then ARCHITECTURE=amd64; elif [ "$
     wget https://github.com/dandavison/delta/releases/download/0.14.0/git-delta_0.14.0_${ARCHITECTURE}.deb -O /tmp/git-delta.deb
 RUN DEBIAN_FRONTEND=noninteractive dpkg --install /tmp/git-delta.deb
 
+# Install git-credential-manager
+RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then wget https://github.com/GitCredentialManager/git-credential-manager/releases/download/v2.0.877/gcm-linux_amd64.2.0.877.deb -O /tmp/gcm.deb && DEBIAN_FRONTEND=noninteractive dpkg --install /tmp/gcm.deb; fi
+
 # Cleanup APT
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y
