@@ -2,6 +2,10 @@ FROM ubuntu:20.04
 
 USER root
 ARG TARGETPLATFORM
+ARG LINUX_UID=1000
+ARG LINUX_GID=1000
+ARG MACOS_UID=501
+ARG MACOS_GID=1000
 
 # make /bin/sh symlink to bash instead of dash:
 RUN echo "dash dash/sh boolean false" | debconf-set-selections
@@ -44,9 +48,10 @@ RUN pip3 install kas
 RUN curl https://storage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo
 RUN chmod a+x /usr/bin/repo
 
-RUN groupadd -r -g 1000 dmoseley
 RUN groupadd -r -g 126 kvm
-RUN useradd -r -u 1000 -g dmoseley -G sudo,kvm dmoseley
+RUN if [ "$TARGETPLATFORM" = "linux/arm64" ]; then USER_UID=${MACOS_UID}; USER_GID=${MACOS_GID}; else USER_UID=${LINUX_UID}; USER_GID=${LINUX_GID}; fi && \
+    groupadd -o -r -g ${USER_GID} dmoseley && \
+    useradd -r -u ${USER_UID} -g dmoseley -G sudo,kvm dmoseley
 RUN echo 'root:mysecretpassword' | chpasswd
 RUN echo 'dmoseley:mysecretpassword' | chpasswd
 
