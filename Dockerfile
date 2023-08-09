@@ -13,7 +13,7 @@ RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y
 # Standard Yocto requirements from https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gawk wget git diffstat unzip texinfo gcc build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm python3-subunit mesa-common-dev zstd liblz4-tool sudo apt-utils python2.7 locales python-is-python3 libmd0 libmd-dev
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gawk wget git diffstat unzip texinfo gcc build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm python3-subunit mesa-common-dev zstd liblz4-tool sudo apt-utils python2.7 locales python-is-python3 libmd0 libmd-dev default-jre
 
 # Other packages that I use
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl netcat lzma-dev liblzma-dev liblzma5 python3-distutils dos2unix p7zip-full docker.io jq emacs tmux keychain pass rsync bc
