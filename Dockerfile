@@ -13,10 +13,15 @@ RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y
 # Standard Yocto requirements from https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gawk wget git diffstat unzip texinfo gcc build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit mesa-common-dev zstd liblz4-tool sudo apt-utils locales python-is-python3 libmd0 libmd-dev default-jre dialog libncurses-dev file
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gcc build-essential
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gawk wget git diffstat unzip texinfo chrpath socat cpio
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit mesa-common-dev zstd liblz4-tool
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y sudo apt-utils locales python-is-python3 libmd0 libmd-dev default-jre dialog libncurses-dev
 
 # Other packages that I use
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl netcat lzma-dev liblzma-dev liblzma5 python3-distutils dos2unix p7zip-full docker.io jq emacs tmux keychain pass rsync bc
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl netcat lzma-dev liblzma-dev liblzma5 python3-distutils dos2unix
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y p7zip-full docker.io jq emacs tmux keychain pass rsync bc file
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -f -y
 
 # Generate proper locale
